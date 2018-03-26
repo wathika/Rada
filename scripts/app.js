@@ -295,20 +295,20 @@
    * discussion.
    */
   var initialWeatherForecast = {
-    key: '2459115',
-    label: 'New York, NY',
-    created: '2016-07-22T01:00:00Z',
+    key: '1528488',
+    label: 'Nairobi, Nairobi Area',
+    created: '2018-03-26T07:58:00Z',
     channel: {
       astronomy: {
-        sunrise: "5:43 am",
-        sunset: "8:21 pm"
+        sunrise: "6:35 am",
+        sunset: "6:41 pm"
       },
       item: {
         condition: {
-          text: "Windy",
-          date: "Thu, 21 Jul 2016 09:00 PM EDT",
-          temp: 56,
-          code: 24
+          text: "Cloudy",
+          date: "Mon, 24 March 2018 08:00 AM EDT",
+          temp: 60,
+          code: 26
         },
         forecast: [
           {code: 44, high: 86, low: 70},
@@ -321,10 +321,10 @@
         ]
       },
       atmosphere: {
-        humidity: 56
+        humidity: 95
       },
       wind: {
-        speed: 25,
+        speed: 4,
         direction: 195
       }
     }
