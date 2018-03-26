@@ -51,8 +51,13 @@
     var key = selected.value;
     var label = selected.textContent;
     // TODO init the app.selectedCities array here
+    if (!app.selectedCities) {
+      app.selectedCities = [];
+    }
     app.getForecast(key, label);
     // TODO push the selected city to the array and save here
+    app.selectedCities.push({key: key, label: label});
+    app.saveSelectedCities();
     app.toggleAddDialog(false);
   });
 
@@ -310,6 +315,35 @@
   app.updateForecastCard(initialWeatherForecast);
 
   // TODO add startup code here
+  /****
+  *
+  * Code required to start app
+  *
+  * Used localStorage (a synchronous API)
+  ** has serious perfomance implications and should never be used in production**
+  * Instead checkout IDB (https://www.npmjs.com/package/idb) or
+  * SimpleDB (https://gist.github.com/inexorabletash/c8069c042b734519680c)
+  *
+  ****/
+
+  //checks if user has any saved cities - render those or injected data
+  app.selectedCities = localStorage.selectedCities;
+  if (app.selectedCities) {
+    app.selectedCities = JSON.parse(app.selectedCities);
+    app.selectedCities.forEach(function(city){
+      app.getForecast(city.key, city.label);
+    });
+  }else {
+    /* The user is using app for the first time or not saved any cities
+     * show fake data - a real app could get user location via IP lookup and show that Instead
+    */
+    app.updateForecastCard(initialWeatherForecast);
+    app.selectedCities = [
+      {key: initialWeatherForecast.key, label: initialWeatherForecast.label}
+    ];
+    app.saveSelectedCities();
+  }
+
 
   // TODO add service worker code here
 })();
